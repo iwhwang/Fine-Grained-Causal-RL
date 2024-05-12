@@ -1,0 +1,139 @@
+{
+    "info": "chemical_dynamics",
+    "obs_keys": ["obj0", "obj1", "obj2", "obj3", "obj4", "obj5", "obj6", "obj7", "obj8", "obj9"],
+    "goal_keys": ["target_obj0", "target_obj1", "target_obj2", "target_obj3", "target_obj4", "target_obj5", "target_obj6", "target_obj7", "target_obj8", "target_obj9"],
+    "seed": -1,
+    "cuda_id": 0,
+    "wandb_dir": "/data1/iwhwang/causal_rl/",
+    "loglevel": "WARNING",
+    "ours_params": {
+        "feature_fc_dims": [128, 128],
+        "generative_fc_dims": [128, 128],
+        "vq_encode_fc_dims": [128, 64],
+        "vq_decode_fc_dims": [32],
+        "ncd_fc_dims": [128, 128],
+        "code_labeling": false,
+        "vqvae_ema": true,
+        "ema": 0.99,
+        "codebook_size": 16,
+        "code_dim": 16,
+        "reg_coef": 0.001,
+        "vq_coef": 1.0,
+        "commit_coef": 0.25,
+        "local_mask_sampling_num": 1,
+        "eval_local_mask_sampling_num": 1
+    },
+    "training_params": {
+        "inference_algo": "ours",
+        "rl_algo": "model_based",
+        "load_id": "",
+        "load_inference": "",
+        "load_model_based": "",
+        "load_policy": "",
+        "load_replay_buffer": "",
+        "total_steps": 16100,
+        "init_steps": 1000,
+        "random_action_steps": 1000,
+        "inference_gradient_steps": 1,
+        "inference_update_freq": 1,
+        "policy_update_freq": 1,
+        "test_freq": 1000,
+        "ood_eval_freq": 1000,
+        "ood_eval_batch_size": 1024,
+        "total_test_episode_num": 10,
+        "saving_freq": 50000000,
+        "plot_freq": 1000,
+        "replay_buffer_params": {
+            "capacity": 1000000,
+            "max_sample_time": 128,
+            "saving_freq": 0
+        }
+    },
+    "env_params": {
+        "env_name": "Chemical",
+        "num_env": 10,
+        "chemical_env_params": {
+            "gt_local_mask": true,
+            "local_causal_rule": "full_fork",
+            "use_position": false,
+            "num_objects": 10,
+            "num_colors": 5,
+            "continuous_pos": true,
+            "width_std": 1,
+            "height_std": 1,
+            "width": 5,
+            "height": 5,
+            "render_image": false,
+            "render_type": "shapes",
+            "shape_size": 16,
+            "movement": "Dynamic",
+            "use_cuda": false,
+            "max_steps": 25,
+            "num_target_interventions": 30,
+            "g": "{0-9}->{0-9}",
+            "match_type": "all",
+            "dense_reward": true,
+            "num_action_variable": 1,
+            "name": "train",
+            "test_params": [
+                {
+                    "name": "test1"
+                },
+                {
+                    "name": "test2"
+                },
+                {
+                    "name": "test3"
+                }
+            ]
+        }
+    },
+    "encoder_params": {
+        "encoder_type": "identity"
+    },
+    "inference_params": {
+        "learn_action": false,
+        "learn_upper": false,
+        "learn_std": false,
+        "n_pred_step": 3,
+        "batch_size": 256,
+        "lr": 1e-4,
+        "eval_freq": 1000,
+        "train_prop": 0.9,
+        "residual": false,
+        "log_std_min": -10,
+        "log_std_max": -5,
+        "grad_clip_norm": 20000,
+        "eval_batch_size": 256,
+        "use_gt_global_mask": false,
+        "mlp_params": {
+            "fc_dims": [1024, 1024, 1024]
+        },
+        "gnn_params": {
+            "node_attr_dim": 256,
+            "edge_attr_dim": 256,
+            "embedder_dims": [],
+            "edge_net_dims": [512, 512, 512],
+            "node_net_dims": [512, 512, 512],
+            "projector_dims": []
+        }
+    },
+    "policy_params": {
+        "batch_size": 256,
+        "lr": 1e-4,
+        "n_reward_step": 1,
+        "discount": 0.995,
+        "model_based_params": {
+            "fc_dims": [32, 32],
+            "activations": ["relu", "relu"],
+            "planner_type": "cem",
+            "std_scale": 1.0,
+            "n_horizon_step": 3,
+            "n_iter": 5,
+            "n_candidate": 64,
+            "n_top_candidate": 32,
+            "action_noise": 0.03,
+            "action_noise_eps": 0.05
+        }
+    }
+}
