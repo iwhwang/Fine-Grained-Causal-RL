@@ -1,5 +1,7 @@
 # Fine-Grained Causal Dynamics Learning
 
+![Figure](./fcdl_long.png)
+
 This repository includes the official code of our paper:
 > [**Fine-Grained Causal Dynamics Learning with Quantization for Improving Robustness in Reinforcement Learning**](https://openreview.net/forum?id=mrd4e8ZJjm) <br>
 > Inwoo Hwang, Yunhyeok Kwak, Suhyung Choi, Byoung-Tak Zhang, Sanghack Lee <br>
